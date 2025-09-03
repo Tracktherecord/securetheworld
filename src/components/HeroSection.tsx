@@ -61,14 +61,15 @@ const HeroSection = () => {
           that keep your business safe from evolving threats.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-          <Button variant="cyber" size="lg" className="group">
+        <div className="flex justify-center animate-fade-in">
+          <Button 
+            variant="cyber" 
+            size="lg" 
+            className="group"
+            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             <Eye className="mr-2 group-hover:scale-110 transition-transform" />
             Explore Our Services
-          </Button>
-          <Button variant="outline" size="lg">
-            <Shield className="mr-2" />
-            Get Security Assessment
           </Button>
         </div>
       </div>

@@ -60,7 +60,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="py-24 relative">
+    <section id="services" className="py-24 relative">
       <div className="absolute inset-0 cyber-grid opacity-10"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
