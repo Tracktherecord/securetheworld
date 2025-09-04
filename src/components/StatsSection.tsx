@@ -5,13 +5,13 @@ const StatsSection = () => {
   const stats = [
     {
       icon: Shield,
-      number: "500+",
+      number: "200+",
       label: "Security Assessments Completed",
       color: "text-primary"
     },
     {
       icon: Users, 
-      number: "100+",
+      number: "30+",
       label: "Clients Protected",
       color: "text-accent"
     },
