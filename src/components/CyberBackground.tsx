@@ -55,6 +55,9 @@ const CyberBackground = () => {
   const [shields, setShields] = useState<Shield[]>([]);
   const [cloudNodes, setCloudNodes] = useState<Array<{ id: number; x: number; y: number; scale: number; opacity: number }>>([]);
   const [containerNodes, setContainerNodes] = useState<Array<{ id: number; x: number; y: number; rotation: number; glow: number }>>([]);
+  const [vulnerabilityScans, setVulnerabilityScans] = useState<Array<{ id: number; x: number; y: number; progress: number; status: string }>>([]);
+  const [codeStreams, setCodeStreams] = useState<Array<{ id: number; x: number; y: number; code: string; speed: number }>>([]);
+  const [threatIndicators, setThreatIndicators] = useState<Array<{ id: number; x: number; y: number; severity: string; pulse: number }>>([]);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     const x = (e.clientX / window.innerWidth) * 100;
@@ -158,6 +161,46 @@ const CyberBackground = () => {
     }));
     setContainerNodes(newContainerNodes);
 
+    // Initialize vulnerability scans
+    const newVulnerabilityScans = Array.from({ length: 6 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      progress: 0,
+      status: ['scanning', 'analyzing', 'secure', 'threat'][Math.floor(Math.random() * 4)]
+    }));
+    setVulnerabilityScans(newVulnerabilityScans);
+
+    // Initialize code streams
+    const codeSnippets = [
+      'function authenticate()',
+      'SELECT * FROM users',
+      'if (input.isValid())',
+      'encrypt(data)',
+      'firewall.check()',
+      'validate_token()',
+      'scan_for_threats()',
+      'secure_connection()'
+    ];
+    const newCodeStreams = Array.from({ length: 8 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      code: codeSnippets[Math.floor(Math.random() * codeSnippets.length)],
+      speed: 1 + Math.random() * 2
+    }));
+    setCodeStreams(newCodeStreams);
+
+    // Initialize threat indicators
+    const newThreatIndicators = Array.from({ length: 5 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      severity: ['low', 'medium', 'high', 'critical'][Math.floor(Math.random() * 4)],
+      pulse: Math.random() * Math.PI * 2
+    }));
+    setThreatIndicators(newThreatIndicators);
+
     // Initialize scan lines
     const newScanLines = Array.from({ length: 3 }, (_, i) => ({
       id: i,
@@ -253,6 +296,36 @@ const CyberBackground = () => {
           ...node,
           rotation: node.rotation + 0.5,
           glow: 0.5 + Math.sin(Date.now() * 0.003 + node.id) * 0.3
+        }))
+      );
+
+      // Update vulnerability scans
+      setVulnerabilityScans(prev => 
+        prev.map(scan => ({
+          ...scan,
+          progress: (scan.progress + 2) % 100,
+          status: scan.progress > 95 ? 
+            (['secure', 'threat'][Math.floor(Math.random() * 2)]) : 
+            scan.status
+        }))
+      );
+
+      // Update code streams
+      setCodeStreams(prev => 
+        prev.map(stream => ({
+          ...stream,
+          y: (stream.y + stream.speed) % 110,
+          x: stream.x + Math.sin(Date.now() * 0.001 + stream.id) * 0.1
+        }))
+      );
+
+      // Update threat indicators
+      setThreatIndicators(prev => 
+        prev.map(indicator => ({
+          ...indicator,
+          pulse: indicator.pulse + 0.15,
+          x: indicator.x + Math.sin(Date.now() * 0.002 + indicator.id) * 0.05,
+          y: indicator.y + Math.cos(Date.now() * 0.002 + indicator.id) * 0.05
         }))
       );
     }, 50);
@@ -353,6 +426,65 @@ const CyberBackground = () => {
           }}
         >
           📦
+        </div>
+      ))}
+
+      {/* Vulnerability Scanning Indicators */}
+      {vulnerabilityScans.map((scan) => (
+        <div
+          key={scan.id}
+          className="vulnerability-scan"
+          style={{
+            left: `${scan.x}%`,
+            top: `${scan.y}%`,
+          }}
+        >
+          <div className="scan-progress-bar">
+            <div 
+              className="scan-progress"
+              style={{ width: `${scan.progress}%` }}
+            />
+          </div>
+          <div className={`scan-status status-${scan.status}`}>
+            {scan.status === 'scanning' && '🔍'}
+            {scan.status === 'analyzing' && '⚡'}
+            {scan.status === 'secure' && '✅'}
+            {scan.status === 'threat' && '⚠️'}
+          </div>
+        </div>
+      ))}
+
+      {/* Animated Source Code Streams */}
+      {codeStreams.map((stream) => (
+        <div
+          key={stream.id}
+          className="code-stream"
+          style={{
+            left: `${stream.x}%`,
+            top: `${stream.y}%`,
+            animationDuration: `${3 / stream.speed}s`
+          }}
+        >
+          {stream.code}
+        </div>
+      ))}
+
+      {/* Threat Detection Indicators */}
+      {threatIndicators.map((indicator) => (
+        <div
+          key={indicator.id}
+          className={`threat-indicator severity-${indicator.severity}`}
+          style={{
+            left: `${indicator.x}%`,
+            top: `${indicator.y}%`,
+            transform: `scale(${1 + Math.sin(indicator.pulse) * 0.3})`,
+            opacity: 0.7 + Math.sin(indicator.pulse) * 0.3
+          }}
+        >
+          {indicator.severity === 'low' && '🟢'}
+          {indicator.severity === 'medium' && '🟡'}
+          {indicator.severity === 'high' && '🟠'}
+          {indicator.severity === 'critical' && '🔴'}
         </div>
       ))}
 

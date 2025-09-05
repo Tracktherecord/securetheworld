@@ -427,4 +427,147 @@
       border-width: 0px;
     }
   }
+
+  /* Advanced Cybersecurity Animations */
+  .vulnerability-scan {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .scan-progress-bar {
+    width: 60px;
+    height: 4px;
+    background: hsl(var(--muted));
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid hsl(var(--border));
+  }
+
+  .scan-progress {
+    height: 100%;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    transition: width 0.5s ease;
+    animation: scan-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scan-pulse {
+    0%, 100% {
+      box-shadow: 0 0 5px hsl(var(--primary) / 0.5);
+    }
+    50% {
+      box-shadow: 0 0 15px hsl(var(--primary)), 0 0 25px hsl(var(--primary) / 0.5);
+    }
+  }
+
+  .scan-status {
+    font-size: 14px;
+    animation: status-glow 2s ease-in-out infinite;
+  }
+
+  .status-scanning {
+    filter: drop-shadow(0 0 8px hsl(220 100% 70%));
+  }
+
+  .status-analyzing {
+    filter: drop-shadow(0 0 8px hsl(45 100% 50%));
+  }
+
+  .status-secure {
+    filter: drop-shadow(0 0 8px hsl(120 100% 50%));
+  }
+
+  .status-threat {
+    filter: drop-shadow(0 0 8px hsl(0 100% 50%));
+    animation: threat-alert 1s ease-in-out infinite;
+  }
+
+  @keyframes threat-alert {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  .code-stream {
+    position: absolute;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: hsl(var(--accent));
+    text-shadow: 0 0 8px hsl(var(--accent) / 0.8);
+    animation: code-flow 3s linear infinite;
+    z-index: 2;
+    opacity: 0.8;
+    white-space: nowrap;
+  }
+
+  @keyframes code-flow {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    10% {
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+
+  .threat-indicator {
+    position: absolute;
+    font-size: 16px;
+    z-index: 2;
+    animation: indicator-pulse 2s ease-in-out infinite;
+  }
+
+  .severity-low {
+    filter: drop-shadow(0 0 6px hsl(120 100% 50%));
+  }
+
+  .severity-medium {
+    filter: drop-shadow(0 0 8px hsl(60 100% 50%));
+  }
+
+  .severity-high {
+    filter: drop-shadow(0 0 10px hsl(30 100% 50%));
+  }
+
+  .severity-critical {
+    filter: drop-shadow(0 0 12px hsl(0 100% 50%));
+    animation: critical-alert 1.5s ease-in-out infinite;
+  }
+
+  @keyframes critical-alert {
+    0%, 100% {
+      transform: scale(1);
+      filter: drop-shadow(0 0 12px hsl(0 100% 50%));
+    }
+    25% {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 20px hsl(0 100% 50%)), drop-shadow(0 0 30px hsl(0 100% 30%));
+    }
+    75% {
+      transform: scale(0.9);
+      filter: drop-shadow(0 0 8px hsl(0 100% 50%));
+    }
+  }
+
+  @keyframes indicator-pulse {
+    0%, 100% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
 }
