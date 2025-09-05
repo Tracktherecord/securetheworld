@@ -305,4 +305,126 @@
     transform: translate(-50%, -50%);
     transition: all 0.1s ease;
   }
+
+  /* Enhanced Cybersecurity Animations */
+  .glowing-star {
+    position: absolute;
+    background: radial-gradient(circle, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 30%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: star-twinkle 2s ease-in-out infinite alternate;
+    z-index: 3;
+  }
+
+  @keyframes star-twinkle {
+    0% {
+      filter: blur(1px) brightness(1);
+      box-shadow: 0 0 10px hsl(var(--primary) / 0.8);
+    }
+    100% {
+      filter: blur(2px) brightness(1.5);
+      box-shadow: 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary) / 0.5);
+    }
+  }
+
+  .security-shield {
+    position: absolute;
+    font-size: 24px;
+    filter: drop-shadow(0 0 10px hsl(var(--primary) / 0.8));
+    animation: shield-pulse 3s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  @keyframes shield-pulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 10px hsl(var(--primary) / 0.6));
+    }
+    50% {
+      filter: drop-shadow(0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary) / 0.8));
+    }
+  }
+
+  .cloud-node {
+    position: absolute;
+    font-size: 20px;
+    filter: drop-shadow(0 0 8px hsl(220 100% 70% / 0.8));
+    animation: cloud-float 4s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  @keyframes cloud-float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .container-node {
+    position: absolute;
+    font-size: 18px;
+    filter: drop-shadow(0 0 8px hsl(142 100% 50% / 0.8));
+    z-index: 2;
+  }
+
+  .scan-line-animated {
+    position: absolute;
+    height: 2px;
+    animation: scan-sweep 3s ease-in-out infinite;
+    z-index: 2;
+  }
+
+  @keyframes scan-sweep {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .threat-pulse {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid hsl(var(--destructive) / 0.6);
+    border-radius: 50%;
+    animation: threat-detection 4s ease-out infinite;
+    z-index: 1;
+  }
+
+  .threat-pulse-1 {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+  }
+
+  .threat-pulse-2 {
+    top: 60%;
+    right: 20%;
+    animation-delay: 1.5s;
+  }
+
+  .threat-pulse-3 {
+    bottom: 25%;
+    left: 40%;
+    animation-delay: 3s;
+  }
+
+  @keyframes threat-detection {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+      border-width: 3px;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(3);
+      opacity: 0;
+      border-width: 0px;
+    }
+  }
 }
