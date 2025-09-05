@@ -257,4 +257,52 @@
       opacity: 0;
     }
   }
+
+  /* Interactive cursor effects */
+  .particle-interactive {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: hsl(195 100% 50%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    box-shadow: 0 0 10px hsl(195 100% 50% / 0.8);
+  }
+
+  .digital-trail {
+    position: fixed;
+    color: hsl(120 100% 50%);
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 2;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px hsl(120 100% 50% / 0.8);
+  }
+
+  .security-node {
+    position: absolute;
+    font-size: 20px;
+    pointer-events: none;
+    z-index: 2;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 8px hsl(195 100% 50% / 0.6));
+  }
+
+  .cursor-glow {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(
+      circle,
+      hsl(195 100% 50% / 0.3) 0%,
+      hsl(195 100% 50% / 0.1) 50%,
+      transparent 100%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease;
+  }
 }
